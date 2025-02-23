@@ -1,0 +1,424 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 222.2 84% 4.9%;
+        
+        --card: 0 0% 100%;
+        --card-foreground: 222.2 84% 4.9%;
+        
+        --popover: 0 0% 100%;
+        --popover-foreground: 222.2 84% 4.9%;
+        
+        --primary: 201 96% 32%;
+        --primary-foreground: 210 40% 98%;
+        
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
+        
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+        
+        --accent: 199 89% 48%;
+        --accent-foreground: 222.2 47.4% 11.2%;
+        
+        --success: 142.1 76.2% 36.3%;
+        --success-foreground: 355.7 100% 100%;
+        
+        --warning: 38 92% 50%;
+        --warning-foreground: 355.7 100% 100%;
+        
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+        
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
+        --ring: 201 96% 32%;
+        
+        --radius: 0.5rem;
+    }
+
+    .dark {
+        --background: 222.2 84% 4.9%;
+        --foreground: 210 40% 98%;
+        
+        --card: 222.2 84% 4.9%;
+        --card-foreground: 210 40% 98%;
+        
+        --popover: 222.2 84% 4.9%;
+        --popover-foreground: 210 40% 98%;
+        
+        --primary: 201 96% 32%;
+        --primary-foreground: 222.2 47.4% 11.2%;
+        
+        --secondary: 217.2 32.6% 17.5%;
+        --secondary-foreground: 210 40% 98%;
+        
+        --muted: 217.2 32.6% 17.5%;
+        --muted-foreground: 215 20.2% 65.1%;
+        
+        --accent: 199 89% 48%;
+        --accent-foreground: 210 40% 98%;
+        
+        --success: 142.1 70.6% 45.3%;
+        --success-foreground: 144.9 80.4% 10%;
+        
+        --warning: 47.9 95.8% 53.1%;
+        --warning-foreground: 26 83.3% 14.1%;
+        
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+        
+        --border: 217.2 32.6% 17.5%;
+        --input: 217.2 32.6% 17.5%;
+        --ring: 201 96% 32%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+@layer components {
+    /* Modern Scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: hsl(var(--background));
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: hsl(var(--muted));
+        border-radius: 4px;
+    }
+
+    /* FullCalendar Modern Styling */
+    .fc {
+        @apply font-sans bg-card rounded-xl shadow-lg border border-border/50;
+    }
+
+    .fc .fc-toolbar {
+        @apply mb-8 px-6 pt-6 flex flex-wrap gap-4 items-center;
+    }
+
+    .fc .fc-toolbar-title {
+        @apply text-2xl font-bold text-foreground;
+    }
+
+    .fc .fc-button {
+        @apply inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg
+        bg-primary text-primary-foreground shadow-sm
+        hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary
+        disabled:opacity-50 disabled:cursor-not-allowed
+        transition-all duration-200;
+    }
+
+    .fc .fc-button-primary:not(:disabled).fc-button-active,
+    .fc .fc-button-primary:not(:disabled):active {
+        @apply bg-primary/80;
+    }
+
+    .fc .fc-event {
+        @apply cursor-pointer border-none rounded-lg shadow-sm transition-transform duration-200;
+    }
+
+    .fc .office-hour-slot {
+        @apply bg-[hsl(var(--success))] text-[hsl(var(--success-foreground))] shadow-sm;
+    }
+
+    .fc .office-hour-slot:hover {
+        @apply bg-[hsl(var(--success))]/90 transform scale-[1.02];
+    }
+
+    .fc .office-hour-slot:focus {
+        @apply outline-none ring-2 ring-offset-2 ring-[hsl(var(--success))];
+    }
+
+    .fc .booked-slot {
+        @apply cursor-not-allowed;
+    }
+
+    .fc .booked-slot.pending {
+        @apply bg-[hsl(var(--warning))]/20;
+    }
+
+    .fc .booked-slot.accepted {
+        @apply bg-[hsl(var(--destructive))]/20;
+    }
+
+    .fc .fc-timegrid-slot {
+        @apply transition-colors duration-200 border-border/50;
+    }
+
+    .fc .fc-timegrid-slot:hover {
+        @apply bg-secondary/50;
+    }
+
+    .fc .fc-timegrid-col {
+        @apply bg-card;
+    }
+
+    .fc .fc-timegrid-slot-label {
+        @apply text-sm font-medium text-muted-foreground py-1;
+    }
+
+    .fc .fc-timegrid-axis {
+        @apply text-sm font-medium text-foreground bg-secondary;
+    }
+
+    .fc .fc-col-header-cell {
+        @apply bg-secondary py-4;
+    }
+
+    .fc .fc-col-header-cell-cushion {
+        @apply font-semibold text-foreground;
+    }
+
+    .fc .fc-timegrid-now-indicator-line {
+        @apply border-2 border-accent;
+    }
+
+    .fc .fc-timegrid-now-indicator-arrow {
+        @apply border-accent;
+    }
+
+    .fc .fc-highlight {
+        @apply bg-accent/10;
+    }
+
+    /* Modern Event Tooltips */
+    .fc .fc-event[title]:hover:after {
+        content: attr(title);
+        @apply absolute z-50 p-3 bg-popover text-popover-foreground text-sm font-medium
+        rounded-lg shadow-lg border border-border
+        backdrop-blur-sm;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        min-width: max-content;
+    }
+
+    /* Glass Morphism Effects */
+    .glass-card {
+        @apply bg-card/30 backdrop-blur-lg border border-border/50 rounded-lg shadow-sm;
+        transition: all 0.2s ease-in-out;
+    }
+
+    /* Modern Form Elements */
+    .modern-input {
+        @apply block w-full px-4 py-2 text-foreground bg-background border border-input rounded-md shadow-sm 
+        focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
+        disabled:cursor-not-allowed disabled:opacity-50;
+    }
+
+    .modern-select {
+        @apply block w-full px-4 py-2 text-foreground bg-background border border-input rounded-md shadow-sm 
+        focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
+        disabled:cursor-not-allowed disabled:opacity-50;
+    }
+
+    /* Modern Button Styles */
+    .modern-button {
+        @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors 
+        focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none 
+        disabled:opacity-50 h-9 px-4 py-2;
+    }
+
+    .modern-button-primary {
+        @apply modern-button bg-primary text-primary-foreground shadow hover:bg-primary/90;
+    }
+
+    .modern-button-secondary {
+        @apply modern-button bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80;
+    }
+
+    .modern-button-accent {
+        @apply modern-button bg-accent text-accent-foreground shadow-sm hover:bg-accent/90;
+    }
+}
+
+/* Accessibility Improvements */
+@layer utilities {
+    .fc button:focus,
+    .fc a:focus {
+        @apply outline-none ring-2 ring-offset-2 ring-primary;
+    }
+
+    /* High Contrast & Dark Mode Support */
+    @media (prefers-color-scheme: dark) {
+        .fc {
+            @apply border-border/10;
+        }
+
+        .fc .fc-button {
+            @apply border border-border/20;
+        }
+
+        .fc .office-hour-slot {
+            @apply border border-border/20;
+        }
+    }
+
+    /* Reduced Motion Support */
+    @media (prefers-reduced-motion: reduce) {
+        .fc * {
+            @apply transition-none !important;
+            animation: none !important;
+        }
+    }
+}
+
+/* Custom Animations */
+@keyframes loading {
+    0% {
+        transform: translateX(-100%);
+    }
+    50% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin-reverse {
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-8px) scale(1.05);
+    }
+}
+
+/* Loader Styles */
+.loader-container {
+    @apply fixed inset-0 flex items-center justify-center bg-white z-50;
+}
+
+.loader-content {
+    @apply flex flex-col items-center justify-center gap-10 p-8;
+}
+
+.loader-logo {
+    @apply relative w-40 h-40 flex items-center justify-center;
+}
+
+.loader-ring {
+    @apply absolute rounded-full border-[3px];
+}
+
+.loader-ring-outer {
+    @apply w-40 h-40 border-t-[#0284c7] border-r-[#0ea5e9] border-b-[#0284c7] border-l-[#0ea5e9];
+    animation: spin 3s linear infinite;
+}
+
+.loader-ring-inner {
+    @apply w-28 h-28 border-t-[#0ea5e9] border-r-[#0284c7] border-b-[#0ea5e9] border-l-[#0284c7];
+    animation: spin-reverse 2s linear infinite;
+}
+
+.loader-icon {
+    @apply absolute inset-0 flex items-center justify-center;
+}
+
+.loader-icon-bg {
+    @apply bg-white/95 backdrop-blur-sm rounded-full p-5 shadow-lg;
+    animation: float 2s ease-in-out infinite;
+}
+
+.loader-dots-container {
+    @apply absolute inset-0;
+}
+
+.loader-dot {
+    @apply absolute w-2 h-2 rounded-full bg-[#0ea5e9]/50;
+    left: 50%;
+    top: 50%;
+    transform-origin: center;
+}
+
+.loader-text {
+    @apply flex flex-col items-center gap-3;
+}
+
+.loader-title {
+    @apply text-3xl font-bold tracking-tight text-center;
+}
+
+.loader-title-gradient {
+    @apply bg-gradient-to-r from-[#0284c7] via-[#0ea5e9] to-[#0284c7] bg-clip-text text-transparent;
+    background-size: 200% auto;
+    animation: loading-bar 2s linear infinite;
+}
+
+.loader-subtitle {
+    @apply flex items-center justify-center gap-[2px] text-base;
+}
+
+.loader-progress {
+    @apply w-52 h-1 bg-gray-100 rounded-full overflow-hidden shadow-sm;
+}
+
+.loader-progress-bar {
+    @apply h-full w-full bg-gradient-to-r from-[#0284c7] via-[#0ea5e9] to-[#0284c7];
+    background-size: 200% auto;
+    animation: loading-bar 2s ease-in-out infinite;
+}
+
+.loading-letter {
+    @apply inline-block text-gray-500;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+.loading-dot {
+    @apply inline-block text-[#0ea5e9] text-lg font-bold;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes loading-bar {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes ping {
+    0% {
+        transform: scale(1);
+        opacity: 0.75;
+    }
+    75%, 100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
